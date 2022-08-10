@@ -19,46 +19,56 @@ function createDOMElement (tag, options, parent)
 
 	//	First some error checking...
 
-	if (typeof tag != "string")
-	{
-		console.log ("createDOMElement says 'tag is invalid: " + tag);
-		return false;
-	}
-
-	if (typeof options != "object")
-	{
-		console.log ("createDOMElement says ''options' is invalid: ' " + typeof options);
-		return false;
-	}
-
-	if (parent)
-	{
-		try
+	try
+	{	//	I can't check if values passed are the correct type, but I can't really know if they actually represent
+		//	real tag name and existing DOM elements.  I suppose I could compare tag to a list of all valid HTML tag
+		//	name, but that's unnecessary.  It's easier to wrap everything ia a try block and let JavaScript tell
+		//	if it's invalid...
+		
+//	01	Know what?  That kind of obviates the need for error-checking...
+//	01			if (typeof tag != "string")
+//	01			{
+//	01				console.log ("createDOMElement says 'tag is invalid: " + tag);
+//	01				return false;
+//	01			}
+//	01	
+//	01			if (typeof options != "object")
+//	01			{
+//	01				console.log ("createDOMElement says ''options' is invalid: ' " + typeof options);
+//	01				return false;
+//	01			}
+//	01	
+		if (parent)
 		{
-			if (typeof parent == "string") parent = document.getElementById (parent);
+//	01				try
+//	01				{
+				if (typeof parent == "string") parent = document.getElementById (parent);
+//	01				}
+//	01				catch (error)
+//	01				{
+//	01					console.log ("createDOMElement says:");
+//	01					console.log (error);
+//	01					return false
+//	01				}
+//	01	
+//	01				if (typeof parent != "object")
+//	01				{
+//	01					console.log ("createDOMElement says 'parent' is invalid");
+//	01					return false
+//	01				}
+//	01	
+//	01				if (!parent.tagName)
+//	01				{
+//	01					console.log ("createDOMElement says 'parent' is not an HTML element");
+//	01					return false
+//	01				}
 		}
-		catch (_)
-		{
-			console.log ("createDOMElement says '" + id + "' is not in the DOM");
-			return false
-		}
+//	01	
+//	01		//	Now that that is done, get on with the real work...
+//	01	
+//	01		let element = [];
 
-		if (typeof parent != "object")
-		{
-			console.log ("createDOMElement says 'parent' is invalid");
-			return false
-		}
-
-		if (!parent.tagName)
-		{
-			console.log ("createDOMElement says 'parent' is not an HTML element");
-			return false
-		}
-	}
-
-	//	Now that that is done, get on with the real work...
-
-//
+		document.createElement (tag);
 //
 //
 //
@@ -66,4 +76,11 @@ function createDOMElement (tag, options, parent)
 	if (parent) parent.append (element);
 
 	return element;
+	}
+	catch (error)
+	{
+		console.log ("createDOMElement says:");
+		console.log (error);
+		return false;
+	}
 }
