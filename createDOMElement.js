@@ -68,14 +68,51 @@ function createDOMElement (tag, options, parent)
 //	01	
 //	01		let element = [];
 
-		document.createElement (tag);
-//
-//
-//
+		const element = document.createElement (tag);
 
-	if (parent) parent.append (element);
+		Object.entries (options).forEach (attribute =>
+		{
+			switch (attribute[0])
+			{
+				case "classList":
+				{	//	classList could be passed as a string representing one class, or as an array of strings.
 
-	return element;
+					if (typeof attribute[1] == "string")
+						element.classList.add (attribute[1])
+					else
+						attribute[1].forEach (a => { element.classList.add (a) } );
+					break;
+				}
+
+				case "innerText":
+				{
+					element.innetText = attribute[1];
+					break;
+				}
+
+				case "innerHTML":
+				{
+					element.innetHTML = attribute[1];
+					break;
+				}
+
+				case "style":
+				{
+					//	Not actually sure how to handle this one just yet...
+					break;
+				}
+
+				default:
+				{
+					element.setAttribute (attribute[0], attribute[1]);
+					break;
+				}
+			}
+		})
+
+		if (parent) parent.append (element);
+
+		return element;
 	}
 	catch (error)
 	{
