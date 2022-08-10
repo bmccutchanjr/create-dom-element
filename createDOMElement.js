@@ -25,48 +25,7 @@ function createDOMElement (tag, options, parent)
 		//	name, but that's unnecessary.  It's easier to wrap everything ia a try block and let JavaScript tell
 		//	if it's invalid...
 		
-//	01	Know what?  That kind of obviates the need for error-checking...
-//	01			if (typeof tag != "string")
-//	01			{
-//	01				console.log ("createDOMElement says 'tag is invalid: " + tag);
-//	01				return false;
-//	01			}
-//	01	
-//	01			if (typeof options != "object")
-//	01			{
-//	01				console.log ("createDOMElement says ''options' is invalid: ' " + typeof options);
-//	01				return false;
-//	01			}
-//	01	
-		if (parent)
-		{
-//	01				try
-//	01				{
-				if (typeof parent == "string") parent = document.getElementById (parent);
-//	01				}
-//	01				catch (error)
-//	01				{
-//	01					console.log ("createDOMElement says:");
-//	01					console.log (error);
-//	01					return false
-//	01				}
-//	01	
-//	01				if (typeof parent != "object")
-//	01				{
-//	01					console.log ("createDOMElement says 'parent' is invalid");
-//	01					return false
-//	01				}
-//	01	
-//	01				if (!parent.tagName)
-//	01				{
-//	01					console.log ("createDOMElement says 'parent' is not an HTML element");
-//	01					return false
-//	01				}
-		}
-//	01	
-//	01		//	Now that that is done, get on with the real work...
-//	01	
-//	01		let element = [];
+		if ((parent) && (typeof parent == "string")) parent = document.getElementById (parent);
 
 		const element = document.createElement (tag);
 
@@ -86,13 +45,13 @@ function createDOMElement (tag, options, parent)
 
 				case "innerText":
 				{
-					element.innetText = attribute[1];
+					element.innerText = attribute[1];
 					break;
 				}
 
 				case "innerHTML":
 				{
-					element.innetHTML = attribute[1];
+					element.innerHTML = attribute[1];
 					break;
 				}
 

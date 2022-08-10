@@ -1,6 +1,6 @@
 # Create DOM Element
 
-Create DOM Element is intended as a front-end utility script to aid in the creation and configuration of HTML DOM elements on a web page.  It consists simply as a single JavaScript function.
+Create DOM Element is intended as a front-end utility script to aid in the creation and configuration of HTML DOM elements on a web page.  It consists of a single JavaScript function.
 
 To use it, include a script tag in your HTML with this URL as 'src'.
 
